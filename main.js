@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
+const { join } = require('path');
 
 let mainWindow;
 
@@ -11,6 +12,9 @@ app.on('ready', () => {
             nodeIntegration: true
         }
     });
-    const urlLocation = isDev ? 'http://localhost:3000' : 'test';
+    const urlLocation = isDev
+        ? 'http://localhost:3000'
+        : `file://${join(__dirname, './build/index.html')}`;
+
     mainWindowmainWindow.loadURL(urlLocation);
 });
