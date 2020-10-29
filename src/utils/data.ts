@@ -5,6 +5,6 @@ export const flattenArr = (arr: any[]) => {
     }, {});
 };
 
-export const objToArr = (obj) => {
+export const objToArr = (obj: any) => {
     return Object.keys(obj).map((key) => obj[key]);
 };
