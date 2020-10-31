@@ -1,20 +1,52 @@
-const { app, BrowserWindow } = require('electron');
+const { app, ipcMain, ipcRenderer } = require('electron');
 const isDev = require('electron-is-dev');
 const { join } = require('path');
+const AppWindow = require('./src/AppWindow');
 
 let mainWindow;
+let settingWindow;
 
 app.on('ready', () => {
-    mainWindowmainWindow = new BrowserWindow({
-        width: 1024,
-        height: 700,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
     const urlLocation = isDev
         ? 'http://localhost:3000'
         : `file://${join(__dirname, './build/index.html')}`;
 
-    mainWindowmainWindow.loadURL(urlLocation);
+    mainWindow = new AppWindow(
+        {
+            width: 1024,
+            height: 700
+        },
+        urlLocation
+    );
+    // mainWindow = new BrowserWindow({
+    //     width: 1024,
+    //     height: 700,
+    //     webPreferences: {
+    //         nodeIntegration: true
+    //     }
+    // });
+    // mainWindow.loadURL(urlLocation);
+
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
+    //hook up
+    ipcMain.on('open-setting-window', () => {
+        const settingLocation = `file://${join(
+            __dirname,
+            './src/subwindow/index.html'
+        )}`;
+
+        settingWindow = new AppWindow(
+            {
+                width: 500,
+                height: 400,
+                parent: mainWindow
+            },
+            settingLocation
+        );
+        settingWindow.on('closed', () => {
+            mainWindow = null;
+        });
+    });
 });

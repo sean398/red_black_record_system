@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ipcMain } from 'electron';
 import './pages.scss';
+const fs = window.require('fs');
+const { ipcRenderer } = window.require('electron');
 
 const WelcomePage = () => {
     const [isShow, setIsShow] = useState(false);
@@ -12,7 +13,7 @@ const WelcomePage = () => {
     }, []);
 
     const handleClick = () => {
-        ipcMain.emit('open-setting-window');
+        ipcRenderer.send('open-setting-window', true);
     };
 
     return (
