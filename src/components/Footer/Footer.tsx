@@ -30,7 +30,6 @@ const Footer = (props: IFooter) => {
             {isShow && (
                 <div className="d-flex justify-content-between row btn-container">
                     <button
-                        style={{ marginLeft: '30px' }}
                         className="col button btn btn-info"
                         type="button"
                         onClick={handleFirstClick}

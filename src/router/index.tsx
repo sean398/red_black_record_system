@@ -16,12 +16,10 @@ const Router = () => {
                         onGoBack={handleGoBack}
                     />
                 );
-                break;
             case 'game':
                 return (
                     <GamePage onGoNext={handleGoNext} onGoBack={handleGoBack} />
                 );
-                break;
         }
     };
 
