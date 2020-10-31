@@ -9,27 +9,24 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div class="container">
-        <h5>设置</h5>
         <form id="settings-form">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control email" id="exampleInputEmail1" placeholder="Email">
+              <label for="numberOfGame">游戏局数</label>
+              <input  class="form-control number" id="numberOfGame" >
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
+              <label for="groupOfGame">游戏组数</label>
+              <input  class="form-control group" id="groupOfGame" >
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">File input</label>
-              <input type="file" id="exampleInputFile">
-              <p class="help-block">Example block-level help text here.</p>
+              <label for="firstWeighting">第一次加权局数</label>
+              <input  class="form-control firstWeighting" id="firstWeighting">
             </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Check me out
-              </label>
+            <div class="form-group">
+              <label for="secondWeighting">第二次加权局数</label>
+              <input  class="form-control secondWeighting" id="secondWeighting">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-info">Submit</button>
           </form>
     </div>
     <script src='./setting.js'>

@@ -18,15 +18,6 @@ app.on('ready', () => {
         },
         urlLocation
     );
-    // mainWindow = new BrowserWindow({
-    //     width: 1024,
-    //     height: 700,
-    //     webPreferences: {
-    //         nodeIntegration: true
-    //     }
-    // });
-    // mainWindow.loadURL(urlLocation);
-
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
@@ -39,8 +30,8 @@ app.on('ready', () => {
 
         settingWindow = new AppWindow(
             {
-                width: 500,
-                height: 400,
+                width: 600,
+                height: 500,
                 parent: mainWindow
             },
             settingLocation
