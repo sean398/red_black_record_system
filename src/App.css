@@ -1,0 +1,13 @@
+.App {
+    font-family: 'Arial', 'Microsoft YaHei', '黑体', '宋体', sans-serif;
+    height: 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
