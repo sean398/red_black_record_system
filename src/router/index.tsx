@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import WelcomePage from '../pages/Welcome';
 import GamePage from '../pages/Game';
+import Statisic from '../pages/Statistic';
+import '../pages/pages.scss';
 
 const Router = () => {
     const [stage, setStage] = useState<string>('welcome');
+    const [groupScore, setGroupStore] = useState<any>({});
 
-    const stages = ['welcome', 'game'];
+    const stages = ['welcome', 'game', 'chart'];
 
     const switchPage = (stage: string) => {
         switch (stage) {
@@ -18,7 +21,20 @@ const Router = () => {
                 );
             case 'game':
                 return (
-                    <GamePage onGoNext={handleGoNext} onGoBack={handleGoBack} />
+                    <GamePage
+                        onGoNext={handleGoNext}
+                        onGoBack={handleGoBack}
+                        groupScore={groupScore}
+                        setGroupStore={setGroupStore}
+                    />
+                );
+            case 'chart':
+                return (
+                    <Statisic
+                        onGoNext={handleGoNext}
+                        onGoBack={handleGoBack}
+                        groupScore={groupScore}
+                    />
                 );
         }
     };

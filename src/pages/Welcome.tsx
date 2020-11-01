@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer/Footer';
-import './pages.scss';
 const { ipcRenderer } = window.require('electron');
 
 const WelcomePage = (props: any) => {
