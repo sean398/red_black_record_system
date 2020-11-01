@@ -1,6 +1,6 @@
 {
   "name": "cloud-doc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "main": "main.js",
   "description": "red black game in pc",
@@ -30,7 +30,8 @@
     "electron-start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "predist": "npm run build"
   },
   "build": {
     "appId": "red_black_game",
