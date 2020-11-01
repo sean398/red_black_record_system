@@ -7,6 +7,7 @@ import '../pages/pages.scss';
 const Router = () => {
     const [stage, setStage] = useState<string>('welcome');
     const [groupScore, setGroupStore] = useState<any>({});
+    const [gameData, setGameData] = useState<any>({});
 
     const stages = ['welcome', 'game', 'chart'];
 
@@ -26,6 +27,8 @@ const Router = () => {
                         onGoBack={handleGoBack}
                         groupScore={groupScore}
                         setGroupStore={setGroupStore}
+                        gameData={gameData}
+                        setGameData={setGameData}
                     />
                 );
             case 'chart':
@@ -34,9 +37,15 @@ const Router = () => {
                         onGoNext={handleGoNext}
                         onGoBack={handleGoBack}
                         groupScore={groupScore}
+                        onReset={handleReset}
                     />
                 );
         }
+    };
+
+    const handleReset = () => {
+        setStage('welcome');
+        setGameData({});
     };
 
     const handleGoNext = () => {

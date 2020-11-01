@@ -40,8 +40,14 @@
       "build/**/*",
       "node_modules/**/*",
       "package.json",
-      "main.js"
+      "./src/subwindow/**/*",
+      "main.js",
+      "./src/utils/data.js",
+      "./src/AppWindow.js"
     ],
+    "win":{
+      "icon":"./Network.ico"
+    },
     "extends": null
   },
   "homepage": "./",

@@ -7,9 +7,15 @@ const Store = window.require('electron-store');
 const settingsStore = new Store({ name: 'Settings' });
 
 const GamePage = (props: any) => {
-    const { onGoNext, onGoBack, groupScore, setGroupStore } = props;
+    const {
+        onGoNext,
+        onGoBack,
+        groupScore,
+        setGroupStore,
+        gameData,
+        setGameData
+    } = props;
     const [currentRound, setCurrentRound] = useState<number>(1);
-    const [gameData, setGameData] = useState<any>({});
     const [gameSetting, setGameSetting] = useState({
         number: 10,
         group: 3,
