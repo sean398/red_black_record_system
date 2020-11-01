@@ -17,6 +17,13 @@
         transform: translateX(-50%);
     }
 }
+.background {
+    position: fixed;
+    z-index: 90000;
+    width: 100%;
+    height: 100%;
+    background: no-repeat url('../643572532831474173.png');
+}
 
 .game-container {
     margin-top: 100px;
@@ -51,4 +58,12 @@
     border: 3px solid #f0f0f0;
     border-radius: 5px;
     background: #fff;
+}
+
+.score-container {
+    width: 100%;
+    margin: 10px;
+    .score-item {
+        width: 20%;
+    }
 }

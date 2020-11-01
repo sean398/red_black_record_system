@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer/Footer';
 import GrouSelect from '../components/groupSelect/GroupSelect';
+import { Input } from 'antd';
 import { objToArr } from '../utils/data';
 
 const Store = window.require('electron-store');
@@ -91,8 +92,6 @@ const GamePage = (props: any) => {
                         }
                     });
                 });
-                console.log(newDataStore);
-
                 setGroupStore(newDataStore);
                 setCurrentRound(currentRound + 1);
             } else if (currentRound + 1 >= gameSetting['number']) {
@@ -101,6 +100,9 @@ const GamePage = (props: any) => {
         }
     };
 
+    useEffect(() => {
+        console.log(objToArr(groupScore));
+    });
     return (
         <>
             <GrouSelect
@@ -109,6 +111,16 @@ const GamePage = (props: any) => {
                 gameData={gameData}
                 setGameData={setGameData}
             />
+            <div className="score-container d-flex justify-content-start">
+                {objToArr(groupScore).map((score, index) => {
+                    return (
+                        <div className="score-item">
+                            <div>{`第${index + 1}组得分`}</div>
+                            <Input value={score} disabled />
+                        </div>
+                    );
+                })}
+            </div>
             <Footer
                 titles={['返回', '继续']}
                 onFirstButtonClick={handleGoback}
