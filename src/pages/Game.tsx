@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Footer from '../components/Footer/Footer';
 import GrouSelect from '../components/groupSelect/GroupSelect';
-import { Input } from 'antd';
+import { Input, Modal } from 'antd';
 import { objToArr } from '../utils/data';
 
 const Store = window.require('electron-store');
@@ -17,6 +17,9 @@ const GamePage = (props: any) => {
         setGameData
     } = props;
     const [currentRound, setCurrentRound] = useState<number>(1);
+    const [modalVisable, setModalVisable] = useState<boolean>(false);
+    const weight = useRef<number>(2);
+    const trueRound = useRef<number>(1);
     const [gameSetting, setGameSetting] = useState({
         number: 10,
         group: 3,
@@ -43,6 +46,30 @@ const GamePage = (props: any) => {
         }
     }, []);
 
+    useEffect(() => {
+        if (
+            trueRound.current == gameSetting.first ||
+            trueRound.current == gameSetting.second
+        ) {
+            setModalVisable(true);
+        }
+    }, [trueRound.current]);
+
+    // for next release
+    // useEffect(() => {
+    //     const groupScoreArr =objToArr(groupScore);
+    //     const max = Math.max(...groupScoreArr)
+    //     const min = Math.min(...groupScoreArr)
+    //     // {objToArr(groupScore).map((score, index) => {
+    //     //     return (
+    //     //         <div className="score-item">
+    //     //             <div>{`第${index + 1}组得分`}</div>
+    //     //             <Input value={score} disabled />
+    //     //         </div>
+    //     //     );
+    //     // })}
+    // }, [groupScore]);
+
     const handleGoback = () => {
         if (currentRound - 1 >= 1) {
             setCurrentRound(currentRound - 1);
@@ -64,7 +91,7 @@ const GamePage = (props: any) => {
         if (!isPass || !gameData[currentRound]) {
             alert('请选择所有的队伍');
         } else if (isPass) {
-            if (currentRound + 1 <= gameSetting['number']) {
+            if (trueRound.current === currentRound) {
                 const newDataStore = Object.assign(groupScore);
                 const data = objToArr(gameData[currentRound]);
                 data.forEach((value, bigIndex) => {
@@ -73,36 +100,63 @@ const GamePage = (props: any) => {
                         return index !== bigIndex;
                     });
                     otherData.forEach((value) => {
+                        // 权重
+                        let roundWeight = 1;
+                        if (
+                            gameSetting['first'] &&
+                            gameSetting['first'] == currentRound
+                        ) {
+                            roundWeight = weight.current;
+                        } else if (
+                            gameSetting['second'] &&
+                            gameSetting['second'] == currentRound
+                        ) {
+                            roundWeight = weight.current;
+                        }
                         if (isRed) {
                             if (value === 'red') {
                                 newDataStore[bigIndex + 1] =
-                                    newDataStore[bigIndex + 1] - 5;
+                                    newDataStore[bigIndex + 1] -
+                                    5 * roundWeight;
                             } else if (value === 'black') {
                                 newDataStore[bigIndex + 1] =
-                                    newDataStore[bigIndex + 1] + 5;
+                                    newDataStore[bigIndex + 1] +
+                                    5 * roundWeight;
                             }
                         } else {
                             if (value === 'red') {
                                 newDataStore[bigIndex + 1] =
-                                    newDataStore[bigIndex + 1] - 5;
+                                    newDataStore[bigIndex + 1] -
+                                    5 * roundWeight;
                             } else if (value === 'black') {
                                 newDataStore[bigIndex + 1] =
-                                    newDataStore[bigIndex + 1] + 3;
+                                    newDataStore[bigIndex + 1] +
+                                    3 * roundWeight;
                             }
                         }
                     });
                 });
                 setGroupStore(newDataStore);
-                setCurrentRound(currentRound + 1);
-            } else if (currentRound + 1 >= gameSetting['number']) {
+                trueRound.current = trueRound.current + 1;
+            }
+            setCurrentRound(currentRound + 1);
+            if (currentRound + 1 > gameSetting['number']) {
                 onGoNext();
             }
         }
     };
 
-    useEffect(() => {
-        console.log(objToArr(groupScore));
-    });
+    const handleOk = (e: any) => {
+        setModalVisable(false);
+    };
+    const handleCancel = () => {
+        setModalVisable(false);
+    };
+
+    const handleChangeCurrentWeight = (e: any) => {
+        weight.current = +e.target.value;
+    };
+
     return (
         <>
             <GrouSelect
@@ -126,6 +180,19 @@ const GamePage = (props: any) => {
                 onFirstButtonClick={handleGoback}
                 onSecondButtonClick={handleGoNext}
             />
+            <Modal
+                title="请设置本局权重"
+                visible={modalVisable}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                okText="确认"
+                cancelText="取消"
+            >
+                <Input
+                    defaultValue={weight.current}
+                    onChange={handleChangeCurrentWeight}
+                />
+            </Modal>
         </>
     );
 };
