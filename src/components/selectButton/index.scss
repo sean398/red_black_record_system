@@ -1,12 +1,11 @@
 .select-center-container {
     height: 70%;
-    background-color: red;
     text-align: center;
     .select-center-top-title-container {
-        background-color: yellow;
         height: 20px;
         padding-left: 20px;
         display: flex;
+        background-color: #ccc;
         .select-center-title-item {
             flex: 1;
         }
@@ -16,7 +15,6 @@
         height: calc(100% - 20px);
         background-color: #ccc;
         .select-center-top-left-container {
-            background-color: blue;
             width: 20px;
             height: 100%;
             .select-center-title-item {
@@ -30,19 +28,9 @@
             .select-center-row {
                 display: flex;
                 .select-center-button {
-                    border: 1px solid #ccc;
                     flex: 1;
                 }
             }
         }
     }
-
-    // .select-center-title {
-    //     height: 10%;
-    //     display: flex;
-    //     padding-left: 40px;
-    //     .select-center-title-item {
-    //         flex: 1;
-    //     }
-    // }
 }

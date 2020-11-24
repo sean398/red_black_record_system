@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SelectButton from './SelectButton';
 import './index.scss';
 
 interface coordinater {
@@ -54,7 +55,10 @@ const SelectCenter = () => {
                                     {row.map((col) => {
                                         return (
                                             <>
-                                                <div className="select-center-button">{`${col.x}+${col.y}`}</div>
+                                                <SelectButton
+                                                    x={col.x}
+                                                    y={col.y}
+                                                />
                                             </>
                                         );
                                     })}
