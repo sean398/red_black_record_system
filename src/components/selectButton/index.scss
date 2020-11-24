@@ -1,0 +1,10 @@
+.select-center-container {
+    height: 60%;
+    .select-center-row {
+        display: flex;
+        .select-center-button {
+            border: 1px solid #ccc;
+            flex: 1;
+        }
+    }
+}

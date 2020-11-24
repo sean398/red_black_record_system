@@ -3,6 +3,7 @@ import Footer from '../components/Footer/Footer';
 import GrouSelect from '../components/groupSelect/GroupSelect';
 import { Input, Modal } from 'antd';
 import { objToArr } from '../utils/data';
+import SelectCenter from '../components/selectButton/SelectCenter';
 
 const Store = window.require('electron-store');
 const settingsStore = new Store({ name: 'Settings' });
@@ -159,12 +160,13 @@ const GamePage = (props: any) => {
 
     return (
         <>
-            <GrouSelect
+            {/* <GrouSelect
                 groupNumber={gameSetting['group']}
                 currentRound={currentRound}
                 gameData={gameData}
                 setGameData={setGameData}
-            />
+            /> */}
+            <SelectCenter />
             <div className="score-container d-flex justify-content-start">
                 {objToArr(groupScore).map((score, index) => {
                     return (
