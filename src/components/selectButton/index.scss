@@ -24,11 +24,13 @@
         .select-center-content {
             flex: 1;
             height: 100%;
-            background-color: green;
+            background-color: red;
             .select-center-row {
                 display: flex;
                 .select-center-button {
                     flex: 1;
+                    margin-top: 3px;
+                    margin-right: 3px;
                 }
             }
         }

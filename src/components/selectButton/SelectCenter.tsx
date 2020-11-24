@@ -27,9 +27,10 @@ const SelectCenter = () => {
             <div className="select-center-top-title-container">
                 {gameArray.map((row, index) => {
                     return (
-                        <div className="select-center-title-item">{`第${
-                            index + 1
-                        }组`}</div>
+                        <div
+                            key={'top-title' + index}
+                            className="select-center-title-item"
+                        >{`第${index + 1}组`}</div>
                     );
                 })}
             </div>
@@ -38,6 +39,7 @@ const SelectCenter = () => {
                     {gameArray.map((row, index) => {
                         return (
                             <div
+                                key={'left-title' + index}
                                 style={{
                                     height: `${100 / group}%`
                                 }}
@@ -47,21 +49,25 @@ const SelectCenter = () => {
                     })}
                 </div>
                 <div className="select-center-content">
-                    {gameArray.map((row) => {
+                    {gameArray.map((row, index) => {
                         return (
                             <div
                                 className="select-center-row"
                                 style={{
                                     height: `${100 / group}%`
                                 }}
+                                key={'row' + index}
                             >
                                 <>
-                                    {row.map((col) => {
+                                    {row.map((col, secIndex) => {
                                         return (
                                             <>
                                                 <SelectButton
                                                     x={col.x}
                                                     y={col.y}
+                                                    key={
+                                                        'col' + index + secIndex
+                                                    }
                                                     onChange={
                                                         handleButtonChange
                                                     }
