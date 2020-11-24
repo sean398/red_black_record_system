@@ -18,6 +18,10 @@ const SelectCenter = () => {
         }
     }
 
+    const handleButtonChange = (x: number, y: number) => {
+        console.log(x, y);
+    };
+
     return (
         <div className="select-center-container">
             <div className="select-center-top-title-container">
@@ -58,6 +62,9 @@ const SelectCenter = () => {
                                                 <SelectButton
                                                     x={col.x}
                                                     y={col.y}
+                                                    onChange={
+                                                        handleButtonChange
+                                                    }
                                                 />
                                             </>
                                         );

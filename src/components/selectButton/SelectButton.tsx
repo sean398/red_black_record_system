@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const SelectButton = (props: any) => {
-    const { x, y } = props;
+    const { x, y, onChange } = props;
     const [color, setColor] = useState<string>('#ccc');
 
     const handleButtonClick = (e: any) => {
@@ -12,6 +12,7 @@ const SelectButton = (props: any) => {
             //right
             setColor('black');
         }
+        onChange(x, y);
     };
 
     return (
