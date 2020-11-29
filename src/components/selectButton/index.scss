@@ -14,9 +14,10 @@
         display: flex;
         height: calc(100% - 20px);
         background-color: #ccc;
-        .select-center-top-left-container {
+        .select-center-title-left-container {
             width: 20px;
             height: 100%;
+            border-right: 3px solid #fff;
             .select-center-title-item {
                 padding-top: 20px;
             }
@@ -24,7 +25,7 @@
         .select-center-content {
             flex: 1;
             height: 100%;
-            background-color: red;
+            background-color: #fff;
             .select-center-row {
                 display: flex;
                 .select-center-button {

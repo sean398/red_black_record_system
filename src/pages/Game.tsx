@@ -166,7 +166,7 @@ const GamePage = (props: any) => {
                 gameData={gameData}
                 setGameData={setGameData}
             /> */}
-            <SelectCenter />
+            <SelectCenter groupNumber={gameSetting['group']} />
             <div className="score-container d-flex justify-content-start">
                 {objToArr(groupScore).map((score, index) => {
                     return (

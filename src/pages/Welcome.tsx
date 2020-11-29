@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Footer from '../components/Footer/Footer';
 const { ipcRenderer } = window.require('electron');
 

@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const SelectButton = (props: any) => {
-    const { x, y, onChange } = props;
-    const [color, setColor] = useState<string>('#ccc');
+    const { x, y, color, disabled, onChange } = props;
+    const [currentColor, setColor] = useState<string>(color);
 
     const handleButtonClick = (e: any) => {
-        if (e.buttons === 1) {
+        if (disabled) return;
+        if (e.buttons === 1 && currentColor !== 'red') {
             //left
+            onChange(x, y, 'red');
             setColor('red');
-        } else if (e.buttons === 2) {
+        } else if (e.buttons === 2 && currentColor !== 'black') {
             //right
+            onChange(x, y, 'black');
             setColor('black');
         }
-        onChange(x, y);
     };
 
     return (
         <div
-            data-x={x}
-            data-y={y}
             style={{
-                background: color
+                background: currentColor,
+                cursor: disabled ? 'not-allowed' : 'pointer'
             }}
             onMouseDown={handleButtonClick}
             className="select-center-button"
